@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HotelReservation
+﻿namespace HotelReservation
 {
     public class Hotel
     {
@@ -35,7 +29,7 @@ namespace HotelReservation
             }
         }
 
-       
+
         public void dodajSobu()
         {
             Rooms[RoomSize] = new Room();
@@ -46,21 +40,20 @@ namespace HotelReservation
         {
             if (startDate >= 0 && endDate <= 365)
             {
-                for (int i = 0; i < RoomSize; i++)
+                for (int i = 0; i < RoomSize; i++) //prolazimo kroz sve postojece sobe u hotelu
                 {
                     bool nasaoSlobodnu = true;
-                    for (int j = startDate; j <= endDate; j++)
+                    for (int j = startDate; j <= endDate; j++) // proveravamo da li je soba slobodna u zadatom opsegu dana
                     {
-                        if (this.Rooms[i].Rezervacije[j] == true)
-                        {
-                            nasaoSlobodnu = false;
-                        }
+                        if (this.Rooms[i].Rezervacije[j] == true) //Ukoliko je vrednost true, znaci da je soba taj dan zauzeta
+                                nasaoSlobodnu = false; 
+                        
                     }
-                    if (nasaoSlobodnu)
+                    if (nasaoSlobodnu) //ako nadjemo slobodnu sobu
                     {
                         for (int j = startDate; j <= endDate; j++)
                         {
-                            this.Rooms[i].Rezervacije[j] = true;
+                            this.Rooms[i].Rezervacije[j] = true; //Postavljamo vrednost na true(zauzimamo dane u toj sobi, za zadati datum)
 
                         }
                         return true;
